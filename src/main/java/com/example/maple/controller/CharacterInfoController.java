@@ -6,21 +6,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api")
-public class OcidController {
+public class CharacterInfoController {
 
     @Autowired
     private OcidService ocidService;
     @GetMapping("/ocid")
-    public String ocid(@RequestParam(name= "name") String name) {
+    public Map<String, Object> ocid(@RequestParam(name= "name") String name) {
         System.out.println(">>>>>>>>>>>1"+name);
-        String encodeName = URLEncoder.encode(name,StandardCharsets.UTF_8);
 
-        String ocid = ocidService.ocidService(encodeName);
+        Map<String, Object> ocid = ocidService.ocidService(name);
 
         System.out.println(ocid);
 
